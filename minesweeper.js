@@ -22,7 +22,7 @@ function createBoard(rows, cols) {
     newboard.push(newEmptyRow);
   }
 
-  numMines = Math.floor(rows*cols/10);
+  numMines = Math.floor(rows*cols/20);
   var mines = []
 
   for(i=0; i< numMines; i++){
