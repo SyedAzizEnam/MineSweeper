@@ -86,7 +86,6 @@ function uncover(e) {
       e.target.appendChild(par);
 
       board[row][col] = 2;
-      console.log("hi", uncovered);
       uncovered += 1;
       e.target.style.background = '#d4edfd';
       if(uncovered+numMines == rows*cols){
