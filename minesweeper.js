@@ -2,16 +2,27 @@
 var rows = 10;
 var cols = 10;
 var uncovered = 0;
+var squareSize = 50;
 var numMines;
 
 var [board, boardContainer] = createBoard(rows, cols);
 
+
+document.getElementById("myForm").onsubmit = (function () {
+
+  uncovered = 0;
+
+  var rownum = document.getElementById("Row").value;
+  var colnum = document.getElementById("Col").value;
+
+  [rows, cols] = [parseInt(rownum), parseInt(colnum)];
+
+  [board, boardContainer] = createBoard(rows, cols);
+
+  return false;
+})
+
 function createBoard(rows, cols) {
-
-  unconvered = 0;
-  var squareSize = 500/rows;
-
-  /*setSquareStyle()*/
 
   var newboard = [];
   for(i=0; i< rows; i++){
@@ -22,7 +33,10 @@ function createBoard(rows, cols) {
     newboard.push(newEmptyRow);
   }
 
-  numMines = Math.floor(rows*cols/20);
+  numMines = Math.floor(rows*cols/10);
+  if(numMines == 0){
+    numMines = 1;
+  }
   var mines = []
 
   for(i=0; i< numMines; i++){
@@ -36,6 +50,8 @@ function createBoard(rows, cols) {
   }
 
   var newboardContainer = document.getElementById('board');
+  newboardContainer.style.width = squareSize*cols + 'px';
+  newboardContainer.style.height = squareSize*rows + 'px';
   newboardContainer.innerHTML = '';
 
   for(i =0; i < rows; i++){
@@ -70,6 +86,7 @@ function uncover(e) {
       e.target.appendChild(par);
 
       board[row][col] = 2;
+      console.log("hi", uncovered);
       uncovered += 1;
       e.target.style.background = '#d4edfd';
       if(uncovered+numMines == rows*cols){
