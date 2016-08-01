@@ -40,9 +40,9 @@ function createBoard(rows, cols) {
   var mines = []
 
   for(i=0; i< numMines; i++){
-    var randomIndex = [Math.floor(Math.random()*(rows-1)), Math.floor(Math.random()*(cols-1))];
+    var randomIndex = [Math.floor(Math.random()*(rows)), Math.floor(Math.random()*(cols))];
     while(mines.indexOf(randomIndex) != -1){
-        randomIndex = [Math.floor(Math.random()*(rows-1)), Math.floor(Math.random()*(cols-1))];
+        randomIndex = [Math.floor(Math.random()*(rows)), Math.floor(Math.random()*(cols))];
     }
 
     mines.push(randomIndex);
