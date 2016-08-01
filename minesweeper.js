@@ -40,13 +40,13 @@ function createBoard(rows, cols) {
   var mines = []
 
   for(i=0; i< numMines; i++){
-    var randomInt = Math.floor(Math.random()*rows*cols);
-    while(mines.indexOf(randomInt) != -1){
-        randomInt = Math.floor(Math.random()*rows*cols);
+    var randomIndex = [Math.floor(Math.random()*(rows-1)), Math.floor(Math.random()*(cols-1))];
+    while(mines.indexOf(randomIndex) != -1){
+        randomIndex = [Math.floor(Math.random()*(rows-1)), Math.floor(Math.random()*(cols-1))];
     }
 
-    mines.push(randomInt);
-    newboard[Math.floor(randomInt/rows)][randomInt%cols] = 1;
+    mines.push(randomIndex);
+    newboard[randomIndex[0]][randomIndex[1]] = 1;
   }
 
   var newboardContainer = document.getElementById('board');
